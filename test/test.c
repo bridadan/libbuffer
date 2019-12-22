@@ -5,6 +5,34 @@
 #include <stdlib.h>
 #include <string.h>
 
+void test_buffer_buffer() {
+    buffer_t buffer;
+    int result, i;
+    const size_t size = 7;
+    const uint32_t VALUE = 0xDEADBEEF;
+    const char EXPECTED_DATA[] = { 0, 1, 2, 3, 4, 5, 6 };
+    char data[size];
+    char read_data[size];
+
+    buffer_init(&buffer, data, size);
+    result = buffer_write_buffer(&buffer, EXPECTED_DATA, size);
+    assert(!result);
+    
+    for (i = 0; i < size; i++) {
+        assert(data[i] == EXPECTED_DATA[i]);
+    }
+
+    result = buffer_read_buffer(&buffer, read_data, size);
+    assert(!result);
+    
+    for (i = 0; i < size; i++) {
+        assert(read_data[i] == EXPECTED_DATA[i]);
+    }
+
+    result = buffer_read_buffer(&buffer, read_data, size);
+    assert(result == 1);
+}
+
 void test_buffer_uint32() {
     buffer_t buffer;
     int result, i;
@@ -157,6 +185,7 @@ void test_buffer_int8() {
 
 
 int main() {
+    test_buffer_buffer();
     test_buffer_uint32();
     test_buffer_uint16();
     test_buffer_uint8();

@@ -9,6 +9,36 @@ void buffer_init(buffer_t *buffer, char *data, size_t size) {
     buffer->written = 0;
 }
 
+int buffer_read_buffer(buffer_t *buffer, char *data, size_t size) {
+    int i;
+    int start_index = buffer->index;
+
+    if (buffer->written - buffer->index < size) {
+        return 1;
+    }
+
+    for (i = 0; i < size; i++) {
+        data[i] = buffer->buffer[buffer->index++];
+    }
+
+    return 0;
+}
+
+int buffer_write_buffer(buffer_t *buffer, const char *data, size_t size) {
+    int i;
+    int start_index = buffer->written;
+    
+    if (buffer->size - buffer->written < size) {
+        return 1;
+    }
+
+    for (i = 0; i < size; i++) {
+        buffer->buffer[buffer->written++] = data[i];
+    }
+
+    return 0;
+}
+
 int buffer_read_uint32(buffer_t *buffer, uint32_t *data) {
     if (buffer->written - buffer->index < sizeof(uint32_t)) {
         return 1;
