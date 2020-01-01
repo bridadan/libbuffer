@@ -14,106 +14,153 @@ typedef struct write_buffer_t {
     size_t size, index;
 } write_buffer_t;
 
-/* Init the buffer.
-The caller owns the memory pointed to by "data". The lifetime of the memory
-should persist across the lifetime of the buffer.
-*/
+/**
+ * Init the read buffer.
+ *
+ * The caller owns the memory pointed to by "data". The lifetime of the memory
+ * should persist across the lifetime of the buffer.
+ *
+ * @param[in] buffer The buffer to initialize.
+ * @param[in] data The array of bytes to read from.
+ * @param[in] size The size of the array of bytes.
+ */
+
 void buffer_read_init(read_buffer_t *buffer, const char *data, size_t size);
 
-/* Init the buffer.
-The caller owns the memory pointed to by "data". The lifetime of the memory
-should persist across the lifetime of the buffer.
-*/
+/**
+ * Init the write buffer.
+ *
+ * @param[in] buffer The buffer to initialize.
+ * @param[out] data The array of bytes to write to.
+ * @param[in] size The size of the array of bytes.
+ */
 void buffer_write_init(write_buffer_t *buffer, char *data, size_t size);
 
-/* Read a buffer from the buffer.
-The result is written to the memory pointed to by "data.
-If there isn't enough data in the buffer to read the whole buffer, 1 is returned.
-Otherwise, 0 is returned
+/**
+ * Read an array of bytes from the buffer.
+ *
+ * @param[in] buffer The buffer to read from.
+ * @param[out] data The read data.
+ * @param[in] size The size of the array of bytes.
+ * @return 1 if there are not enough bytes to read from the buffer, 0 otherwise.
 */
 int buffer_read_buffer(read_buffer_t *buffer, char *data, size_t size);
 
-/* Write a buffer to the buffer.
-If there isn't enough data in the buffer to write thw whole buffer, 1 is returned.
-Otherwise, 0 is returned.
+/**
+ * Write an array of bytes to the buffer.
+ *
+ * @param[in] buffer The buffer to write to.
+ * @param[in] data The data to write.
+ * @param[in] size The size of the array of bytes.
+ * @return 1 if there is not enough room in the buffer to write the data, 0 otherwise.
 */
 int buffer_write_buffer(write_buffer_t *buffer, const char *data, size_t size);
 
-/* Read an uint32_t from the buffer.
-The result is written to the memory pointed to by "data.
-If there isn't enough data in the buffer to read an uint32, 1 is returned.
-Otherwise, 0 is returned
+/**
+ * Read an uint32_t from the buffer.
+ *
+ * @param[in] buffer The buffer to read from.
+ * @param[out] data The read data.
+ * @return 1 if there are not enough bytes to read from the buffer, 0 otherwise.
 */
 int buffer_read_uint32(read_buffer_t *buffer, uint32_t *data);
 
-/* Write an uint32_t to the buffer.
-If there isn't enough data in the buffer to write an uint32, 1 is returned.
-Otherwise, 0 is returned.
+/**
+ * Write an uint32_t to the buffer.
+ *
+ * @param[in] buffer The buffer to write to.
+ * @param[in] data The data to write.
+ * @return 1 if there is not enough room in the buffer to write the data, 0 otherwise.
 */
 int buffer_write_uint32(write_buffer_t *buffer, uint32_t data);
 
-/* Read an uint16_t from the buffer.
-The result is written to the memory pointed to by "data.
-If there isn't enough data in the buffer to read an uint16, 1 is returned.
-Otherwise, 0 is returned
+/**
+ * Read an uint16_t from the buffer.
+ *
+ * @param[in] buffer The buffer to read from.
+ * @param[out] data The read data.
+ * @return 1 if there are not enough bytes to read from the buffer, 0 otherwise.
 */
 int buffer_read_uint16(read_buffer_t *buffer, uint16_t *data);
 
-/* Write an uint16_t to the buffer.
-If there isn't enough data in the buffer to write an uint16, 1 is returned.
-Otherwise, 0 is returned.
+/**
+ * Write an uint16_t to the buffer.
+ *
+ * @param[in] buffer The buffer to write to.
+ * @param[in] data The data to write.
+ * @return 1 if there is not enough room in the buffer to write the data, 0 otherwise.
 */
 int buffer_write_uint16(write_buffer_t *buffer, uint16_t data);
 
-/* Read an uint8_t from the buffer.
-The result is written to the memory pointed to by "data.
-If there isn't enough data in the buffer to read an uint8, 1 is returned.
-Otherwise, 0 is returned
+/**
+ * Read an uint8_t from the buffer.
+ *
+ * @param[in] buffer The buffer to read from.
+ * @param[out] data The read data.
+ * @return 1 if there are not enough bytes to read from the buffer, 0 otherwise.
 */
 int buffer_read_uint8(read_buffer_t *buffer, uint8_t *data);
 
-/* Write an uint8_t to the buffer.
-If there isn't enough data in the buffer to write an uint8, 1 is returned.
-Otherwise, 0 is returned.
+/**
+ * Write an uint8_t to the buffer.
+ *
+ * @param[in] buffer The buffer to write to.
+ * @param[in] data The data to write.
+ * @return 1 if there is not enough room in the buffer to write the data, 0 otherwise.
 */
 int buffer_write_uint8(write_buffer_t *buffer, uint8_t data);
 
-/* Read an int32_t from the buffer.
-The result is written to the memory pointed to by "data.
-If there isn't enough data in the buffer to read an int32, 1 is returned.
-Otherwise, 0 is returned
+/**
+ * Read an int32_t from the buffer.
+ *
+ * @param[in] buffer The buffer to read from.
+ * @param[out] data The read data.
+ * @return 1 if there are not enough bytes to read from the buffer, 0 otherwise.
 */
 int buffer_read_int32(read_buffer_t *buffer, int32_t *data);
 
-/* Write an int32_t to the buffer.
-If there isn't enough data in the buffer to write an int32, 1 is returned.
-Otherwise, 0 is returned.
+/**
+ * Write an int32_t to the buffer.
+ *
+ * @param[in] buffer The buffer to write to.
+ * @param[in] data The data to write.
+ * @return 1 if there is not enough room in the buffer to write the data, 0 otherwise.
 */
 int buffer_write_int32(write_buffer_t *buffer, int32_t data);
 
-/* Read an int16_t from the buffer.
-The result is written to the memory pointed to by "data.
-If there isn't enough data in the buffer to read an int16, 1 is returned.
-Otherwise, 0 is returned
+/**
+ * Read an int16_t from the buffer.
+ *
+ * @param[in] buffer The buffer to read from.
+ * @param[out] data The read data.
+ * @return 1 if there are not enough bytes to read from the buffer, 0 otherwise.
 */
 int buffer_read_int16(read_buffer_t *buffer, int16_t *data);
 
-/* Write an int16_t to the buffer.
-If there isn't enough data in the buffer to write an int16, 1 is returned.
-Otherwise, 0 is returned.
+/**
+ * Write an int16_t to the buffer.
+ *
+ * @param[in] buffer The buffer to write to.
+ * @param[in] data The data to write.
+ * @return 1 if there is not enough room in the buffer to write the data, 0 otherwise.
 */
 int buffer_write_int16(write_buffer_t *buffer, int16_t data);
 
-/* Read an int8_t from the buffer.
-The result is written to the memory pointed to by "data.
-If there isn't enough data in the buffer to read an int8, 1 is returned.
-Otherwise, 0 is returned
+/**
+ * Read an int8_t from the buffer.
+ *
+ * @param[in] buffer The buffer to read from.
+ * @param[out] data The read data.
+ * @return 1 if there are not enough bytes to read from the buffer, 0 otherwise.
 */
 int buffer_read_int8(read_buffer_t *buffer, int8_t *data);
 
-/* Write an int8_t to the buffer.
-If there isn't enough data in the buffer to write an int8, 1 is returned.
-Otherwise, 0 is returned.
+/**
+ * Write an int8_t to the buffer.
+ *
+ * @param[in] buffer The buffer to write to.
+ * @param[in] data The data to write.
+ * @return 1 if there is not enough room in the buffer to write the data, 0 otherwise.
 */
 int buffer_write_int8(write_buffer_t *buffer, int8_t data);
 

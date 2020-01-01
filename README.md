@@ -1,6 +1,6 @@
 # libbuffer
 
-A minimal C buffer manipulation library.
+A minimal C buffer manipulation library. Documentation is available in [`include/buffer.h`](include/buffer.h).
 
 To build the library: `make`
 
